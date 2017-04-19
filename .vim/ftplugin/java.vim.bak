@@ -1,0 +1,66 @@
+
+"Enable java file type for syntax completion
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" autocmd FileTYpe java setlocal completefunc=javacomplete#CompleteParamsInfo
+" autocmd FileTYpe java inoremap <buffer> . .<C-X><C-U><C-P><DOWN>
+"
+" autocmd FileType java compiler mvn
+" autocmd FileType pom compiler mvn
+
+"autocmd FileType java <Leader>mp :make clean package<CR>
+" autocmd FileType java <Leader>mvnpkgs :make clean package site site:stage<CR>
+" autocmd FileType java <Leader>mvncl :make clean<CR>
+" autocmd FileType java <Leader>mvn :make
+" autocmd FileType java <Leader>mvndly :make clean deploy site site:stage site:deploy<CR>
+
+"To enable smart (trying to guess import option) inserting class imports with F4, add:
+" nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+" imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+" "To enable usual (will ask for import option) inserting class imports with F5, add:
+" nmap <F5> <Plug>(JavaComplete-Imports-Add)
+" imap <F5> <Plug>(JavaComplete-Imports-Add)
+" "To add all missing imports with F6:
+" nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+" imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+" "To remove all missing imports with F7:
+" nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+" imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+"
+" autocmd BufNewFile,BufReadPost java,pom.xml call s:SetupMavenMap()
+"
+" function! <SID>SetupMavenMap()
+"   doautocmd MavenAutoDetect BufNewFile,BufReadPost
+"
+"   if !maven#isBufferUnderMavenProject(bufnr("%"))
+"     return
+"   endif
+"
+"   " Execute testing
+"   if !hasmapto("maven#run-unittest", "in")
+"     imap <buffer> <silent> <F5> maven#run-unittest
+"     nmap <buffer> <silent> <F5> maven#run-unittest
+"   endif
+"   " //~)
+"
+"   " Execute all of testing
+"   if !hasmapto("maven#run-unittest-all", "in")
+"     imap <buffer> <silent> <C-F5> maven#run-unittest-all
+"     nmap <buffer> <silent> <C-F5> maven#run-unittest-all
+"   endif
+"   " //~)
+"
+"   " Switch of unit test
+"   if !hasmapto("maven#switch-unittest-file", "in")
+"     imap <buffer> <silent> <F6> maven#switch-unittest-file
+"     nmap <buffer> <silent> <F6> maven#switch-unittest-file
+"   endif
+"   " //~)
+"
+"   " Open for testing result of testing
+"   if !hasmapto("maven#open-test-result", "in")
+"     imap <buffer> <silent> <C-F6> maven#open-test-result
+"     nmap <buffer> <silent> <C-F6> maven#open-test-result
+"   endif
+"   " //~)
+" endfunction
+"

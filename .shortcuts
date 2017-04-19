@@ -1,0 +1,30 @@
+
+alias shortcuts="vim ~/.shortcuts"
+alias applyshortcuts="source ~/.shortcuts" 
+
+alias install="sudo pact install "
+alias remove="sudo pact remove "
+alias cl="clear"
+
+alias nuget="mono ~/.nuget/NuGet.exe "
+
+alias tmux="tmux -2"
+
+alias bashrc="vim ~/.bashrc"
+alias zshrc="vim ~/.zshrc"
+
+# Editor action
+alias e="vim "
+
+alias applyZshrc="source ~/.zshrc"
+alias applyBashrc="source ~/.bashrc"
+alias applyProfile="source ~/.profile"
+
+#alias gem="gem.bat"
+alias uru="uru.bat"
+
+# Docker
+alias applyDocker="eval $(docker-machine env default)"
+alias startDocker="docker-machine start "
+alias enterContainer="docker exec -it "
+
