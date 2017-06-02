@@ -1,6 +1,7 @@
 
 alias shortcuts="vim ~/.shortcuts"
 alias applyshortcuts="source ~/.shortcuts" 
+alias showShortcuts="cat ~/.shortcuts"
 
 alias install="sudo pact install "
 alias remove="sudo pact remove "
@@ -26,5 +27,6 @@ alias uru="uru.bat"
 # Docker
 alias applyDocker="eval $(docker-machine env default)"
 alias startDocker="docker-machine start "
+alias stopDocker="docker-machine stop "
 alias enterContainer="docker exec -it "
 
