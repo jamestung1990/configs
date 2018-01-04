@@ -25,8 +25,9 @@ alias applyProfile="source ~/.profile"
 alias uru="uru.bat"
 
 # Docker
-alias applyDocker="eval $(docker-machine env default)"
+#alias applyDocker="eval $(docker-machine env default)"
 alias startDocker="docker-machine start "
 alias stopDocker="docker-machine stop "
 alias enterContainer="docker exec -it "
 
+alias vagrantssh="VAGRANT_PREFER_SYSTEM_BIN=1 vagrant ssh"

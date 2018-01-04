@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/osboxes/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+#ZSH_THEME="babun"
 ZSH_THEME="honukai"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -50,11 +50,11 @@ ZSH_THEME="honukai"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump)
+plugins=(git autojump zsh-syntax-highlighting web-search history history-substring-search)
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -81,55 +81,39 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
- alias zshconfig="vim ~/.zshrc"
- alias ohmyzsh="vim ~/.oh-my-zsh"
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ -s /home/james/.autojump/etc/profile.d/autojump.sh ]] && source /home/james/.autojump/etc/profile.d/autojump.sh
+. ~/configs/.shortcuts
 
+[[ -s /cygdrive/d/James/.autojump/etc/profile.d/autojump.sh ]] && source /cygdrive/d/James/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
-source ~/.profile
+export M2_HOME=/cygdrive/d/tools/apache-maven-3.3.9
+export JAVA_HOME=/cygdrive/c/Program\ Files/Java/jdk1.8.0_121
 
-export NVM_DIR="/home/james/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="$JAVA_HOME/bin:$M2_HOME/bin:$PATH"
 
+# If you don't want to update Ansible every time set BOOTSTRAP_ANSIBLE_UPDATE=0
+export BOOTSTRAP_ANSIBLE_UPDATE=0
+source /cygdrive/d/James/ansible-babun-bootstrap/ansible-babun-bootstrap.sh
 
-[ -s "/home/james/.dnx/dnvm/dnvm.sh" ] && . "/home/james/.dnx/dnvm/dnvm.sh" # Load dnvm
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-############ $CLASS_PATH
-CLASS_PATH="$CLASS_PATH"
-if ! [[ "$CLASS_PATH" =~ ^:*(.*:+)*\.{1}(:+.*)*$ ]]; then
-    CLASS_PATH="$CLASS_PATH":.
+if [ ! -e ~/.ssh ]
+then
+  ln -s /cygdrive/c/Users/James/.ssh .
 fi
-if ! [[ "$CLASS_PATH" =~ ^:*(.*:+)*\.{2}(:+.*)*$ ]]; then
-    CLASS_PATH="$CLASS_PATH":..
+
+sshAgentPid=${"$(ps -ef|grep ssh-agent|awk '{print $2}'|head -1)":-"0"}
+if [ "$sshAgentPid" = "0" ]
+then
+  echo "Setup ssh agent..."
+  eval $(ssh-agent)
+  ssh-add ~/.ssh/id_rsa
+  echo "ssh agent setup done"
 fi
-export CLASS_PATH
-############ $JAVA_HOME
-JAVA_HOME="$JAVA_HOME"
-if ! [[ "$JAVA_HOME" =~ ^:*(.*:+)*/opt/java/current-java{1}(:+.*)*$ ]]; then
-    JAVA_HOME=/opt/java/current-java
-fi
-export JAVA_HOME
-############ $PATH
-#  this appears to work for me, if you encounter issues you could
-# simply hard-code $JAVA_HOME/bin into the PATH var
-PATH="$PATH"
-regex="^:*(.*:+)*($JAVA_HOME/bin){1}(:+.*)*$"
-if ! [[ "$PATH" =~ $regex ]]; then
-    PATH="$PATH:$JAVA_HOME/bin"
-fi
-export PATH
 
-export EDITOR='vim'
+source '/cygdrive/d/James/.babun-docker/setup.sh'
 
-source ~/.bin/tmuxinator.zsh
+export ANT_HOME="/cygdrive/d/tools/apache-ant-1.10.1"
+export PATH="$ANT_HOME/bin:$PATH"
 
-export GIT_EDITOR=vim
-
-fpath=(~/.zsh/completion $fpath)
-
-autoload -Uz compinit && compinit -i

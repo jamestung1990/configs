@@ -38,7 +38,7 @@ Plug 'mxw/vim-jsx'
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 
 " Make % match xml tags
-Plug 'edsono/vim-matchit', { 'for': ['xml', 'html'] }
+" Plug 'edsono/vim-matchit', { 'for': ['xml', 'html'] }
 
 " Make tab handle all completions
 Plug 'ervandew/supertab'
@@ -97,10 +97,10 @@ Plug 'garbas/vim-snipmate'
 
 " Optional:
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"Plug 'SirVer/ultisnips'
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " For html
 Plug 'rstacruz/sparkup'
