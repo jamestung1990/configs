@@ -1,0 +1,529 @@
+
+# 2018-12-21 15:07:24.883587
++clear
+
+# 2018-12-21 15:07:27.891239
++ll
+
+# 2018-12-21 15:07:29.467732
++ls
+
+# 2018-12-21 15:07:32.770109
++help
+
+# 2018-12-21 15:07:49.322682
++import requests
+
+# 2018-12-21 15:08:11.574251
++r = requests.get('http://www.google.com.tw/')
+
+# 2018-12-21 15:08:19.761857
++print(r.status_code)
+
+# 2018-12-21 15:08:50.885156
++if r.status_code == requests.codes.ok:
++    print("OK")
+
+# 2018-12-21 15:09:02.261500
++print(r.text)
+
+# 2018-12-21 16:10:27.191875
++import time
+
+# 2018-12-21 16:10:36.957962
++from datetime import datetime
+
+# 2018-12-21 16:11:32.844509
++timestamp = int(time.mktime(datetime.now().timetuple()))
+
+# 2018-12-21 16:11:40.663826
++print(timestamp)
+
+# 2018-12-21 16:12:11.067494
++datetime.now
+
+# 2018-12-21 16:12:12.968884
++datetime.now()
+
+# 2018-12-21 16:12:28.432514
++time.mktime(datetime.now().timetuple())
+
+# 2018-12-21 16:20:51.705808
++datetime.datetime.fromtimestamp(1545379948.0 / 1e3)
+
+# 2018-12-21 16:20:56.984472
++datetime.datetime.fromtimestamp(1545379948 / 1e3)
+
+# 2018-12-21 16:21:15.592942
++datetime.fromtimestamp(1545379948 / 1e3)
+
+# 2018-12-21 16:21:47.610585
++datetime.fromtimestamp(1545286726079 / 1e3)
+
+# 2018-12-21 16:22:06.405501
++datetime.datetime(2018, 12, 20, 14, 18, 46, 79000)
+
+# 2018-12-21 16:22:20.087368
++datetime.datetime(2018, 12, 20, 14, 18)
+
+# 2018-12-21 16:22:27.723076
++datetime(2018, 12, 20, 14, 18)
+
+# 2018-12-21 16:22:58.612754
++time.mktime(datetime(2018, 12, 20, 14, 18))
+
+# 2018-12-21 16:23:12.231203
++print(timestamp)
+
+# 2018-12-21 16:23:38.632412
++timestamp = int(time.mktime(datetime(2018, 12, 20, 14, 18).timetuple()))
+
+# 2018-12-21 16:23:57.111410
++print(timestamp)
+
+# 2018-12-21 16:24:12.470182
++datetime(2018, 12, 20, 14, 18).timetuple()
+
+# 2018-12-21 16:25:39.754115
++timestamp = int(time.mktime(datetime(2018, 12, 20, 14, 18, 46, 79000).timetuple()))
+
+# 2018-12-21 16:25:47.003972
++print(timestamp)
+
+# 2018-12-21 16:26:06.484596
++time.mktime(datetime(2018, 12, 20, 14, 18, 46, 79000).timetuple())
+
+# 2018-12-21 16:27:01.261810
++datetime.fromtimestamp(1545286726079)
+
+# 2018-12-21 16:27:24.927196
++datetime.fromtimestamp(1545286726079 / 1e3)
+
+# 2018-12-21 16:28:52.754807
++help
+
+# 2018-12-21 17:02:48.747680
++time.mktime(datetime.Now().timetuple())
+
+# 2018-12-21 17:02:55.841906
++import time
+
+# 2018-12-21 17:02:59.898874
++import datetime
+
+# 2018-12-21 17:03:05.436965
++time.mktime(datetime.Now().timetuple())
+
+# 2018-12-21 17:03:11.577142
++time.mktime(datetime.now().timetuple())
+
+# 2018-12-21 17:03:38.697614
++timestamp = int(time.mktime(datetime.now().timetuple()))
+
+# 2018-12-21 17:04:59.648426
++datetime.now()
+
+# 2018-12-21 17:05:11.496689
++import datetime
+
+# 2018-12-21 17:05:17.515525
++datetime.datetime.now()
+
+# 2018-12-21 17:05:28.088456
++time.mktime(datetime.datetime.now().timetuple())
+
+# 2018-12-21 17:05:35.735525
++int(time.mktime(datetime.datetime.now().timetuple()))
+
+# 2018-12-21 17:05:51.844817
++String(time.mktime(datetime.datetime.now().timetuple()))
+
+# 2018-12-21 17:05:58.941213
++time.mktime(datetime.datetime.now().timetuple())
+
+# 2018-12-21 17:07:08.762612
++int(time.mktime(datetime.datetime.now().timetuple()))
+
+# 2018-12-21 17:07:16.087767
++now = datetime.datetime.now()
+
+# 2018-12-21 17:07:21.195803
++int(time.mktime(new.timetuple()))
+
+# 2018-12-21 17:07:25.312476
++int(time.mktime(now.timetuple()))
+
+# 2018-12-21 17:07:55.856067
++now - datetime.timedelta(minutes = 10)
+
+# 2018-12-21 17:08:11.326827
++pastTenMin = now - datetime.timedelta(minutes = 10)
+
+# 2018-12-21 17:08:31.246549
++time.mktime(pastTenMin.timetuple())
+
+# 2018-12-26 08:57:53.243789
++from config import config
+
+# 2018-12-26 09:03:12.183372
++stationconf = config('station')
+
+# 2018-12-26 09:04:50.629645
++stationconf = config['station']
+
+# 2018-12-26 09:05:00.933124
++stationconf.TABLE_NAME
+
+# 2018-12-26 09:22:51.600379
++from config import config
+
+# 2018-12-26 09:22:53.227301
++stationconf.TABLE_NAME
+
+# 2018-12-26 09:22:59.827534
++stationconf.COLUMN_LIST
+
+# 2018-12-26 09:23:39.783066
++stationconf.COLUMN_LIST.map(lambda field: field + ',')
+
+# 2018-12-26 09:24:35.599477
++map(lambda field: field + ',', stationconf.COLUMN_LIST)
+
+# 2018-12-26 09:24:43.992817
++list(map(lambda field: field + ',', stationconf.COLUMN_LIST))
+
+# 2018-12-26 09:25:02.707830
++list(map(lambda field: field + ',', stationconf.COLUMN_LIST, stationconf.TABLE_NAME))
+
+# 2018-12-26 09:25:53.337010
++list(map(lambda name: stationconf.TABLE_NAME+'-'+name, stationconf.COLUMN_LIST))
+
+# 2018-12-26 09:26:48.259874
++str(list(map(lambda name: stationconf.TABLE_NAME+'-'+name, stationconf.COLUMN_LIST)))
+
+# 2018-12-26 09:26:57.261138
++str(map(lambda name: stationconf.TABLE_NAME+'-'+name, stationconf.COLUMN_LIST))
+
+# 2018-12-26 09:27:03.940856
++str(list(map(lambda name: stationconf.TABLE_NAME+'-'+name, stationconf.COLUMN_LIST))[0])
+
+# 2018-12-26 09:27:09.914512
++str(list(map(lambda name: stationconf.TABLE_NAME+'-'+name, stationconf.COLUMN_LIST)))[0]
+
+# 2018-12-26 09:28:20.134388
++[print(name) for name in stationconf.COLUMN_LIST]
+
+# 2018-12-26 09:28:58.704388
++[stationconf.TABLE_NAME+'-'+name for name in stationconf.COLUMN_LIST]
+
+# 2018-12-26 09:29:09.276981
++str([stationconf.TABLE_NAME+'-'+name for name in stationconf.COLUMN_LIST])
+
+# 2018-12-26 09:30:40.520441
++','.join(map(str,[stationconf.TABLE_NAME+'-'+name for name in stationconf.COLUMN_LIST]))
+
+# 2018-12-26 09:31:45.970694
++from config import config
+
+# 2018-12-26 09:32:00.552246
++datalake = config['station']
+
+# 2018-12-26 09:32:46.074366
++datalake.REQUEST_STR
+
+# 2018-12-26 09:33:25.289250
++from config import config
+
+# 2018-12-26 09:33:28.109893
++datalake = config['station']
+
+# 2018-12-26 09:33:39.059411
++datalake.REQUEST_STR
+
+# 2018-12-26 09:34:00.584820
++datalake.TABLE_NAME
+
+# 2018-12-26 09:34:25.659455
++from config import config
+
+# 2018-12-26 09:38:43.687221
++datalake = config['station']
+
+# 2018-12-26 09:38:46.535964
++datalake.REQUEST_STR
+
+# 2018-12-26 09:39:36.095860
++datalake = config['station']()
+
+# 2018-12-26 09:40:15.075410
++from config import config
+
+# 2018-12-26 09:40:17.720630
++datalake = config['station']()
+
+# 2018-12-26 09:40:27.526009
++from config import config
+
+# 2018-12-26 09:40:29.517286
++datalake = config['station']()
+
+# 2018-12-26 09:41:01.888367
++datalake = config['station']
+
+# 2018-12-26 09:41:13.365339
++datalake.REQUEST_STR
+
+# 2018-12-26 09:41:20.737680
++datalake.BASE_URL
+
+# 2018-12-26 09:42:38.771044
++from config import config
+
+# 2018-12-26 09:45:37.873981
++datalake.BASE_URL
+
+# 2018-12-26 09:45:47.705517
++datalake = config['station']
+
+# 2018-12-26 09:45:54.972855
++datalake.BASE_URL
+
+# 2018-12-26 09:46:41.250538
++reqstStr = datalake.BASE_URL + "/" + datalake.TABLE_NAME + "/" + ','.join(map(str, [datalake.TABLE_NAME + '-' + name for name in datalake.COLUMN_LIST]))  + "/" + filters + "/sql"
+
+# 2018-12-26 09:46:51.774327
++reqstStr = datalake.BASE_URL + "/" + datalake.TABLE_NAME + "/" + ','.join(map(str, [datalake.TABLE_NAME + '-' + name for name in datalake.COLUMN_LIST]))  + "/" + "/sql"
+
+# 2018-12-26 09:46:59.242344
++print(reqstStr)
+
+# 2018-12-26 09:49:16.261879
++import fetchDatalakeModule
+
+# 2018-12-26 09:51:29.797126
++from jsonpath_rw import jsonpath, parse
+
+# 2018-12-27 14:55:26.328986
++import datetime
+
+# 2018-12-27 14:55:53.990777
++datetime.datetime.strptime('2018-12-27')
+
+# 2018-12-27 14:56:05.878296
++datetime.datetime.strptime('2018-12-27', 'yyyy-mm-dd')
+
+# 2018-12-27 14:56:15.933589
++datetime.datetime.strptime('2018-12-27', 'YYYY-MM-dd')
+
+# 2018-12-27 14:56:28.967946
++datetime.datetime.strptime('2018-12-27', 'YYYY-MM-DD')
+
+# 2018-12-27 14:57:32.766964
++datetime.datetime.strptime('2018-12-27', 'YYYY-MM-DD').total_seconds()
+
+# 2018-12-27 14:57:50.185314
++datetime.datetime.strptime('2018-12-27 00:00:00', 'YYYY-MM-DD HH:mm:ss').total_seconds()
+
+# 2018-12-27 14:59:57.346004
++datetime.datetime.strptime('2018-12-27 00:00:00', 'YYYY-MM-DD HH:mm:ss').total_seconds() * 1000.0
+
+# 2018-12-27 15:00:07.916744
++datetime.datetime.strptime('2018-12-27 00:00:00', 'YYYY-MM-dd HH:mm:ss').total_seconds() * 1000.0
+
+# 2018-12-27 15:00:25.248518
++datetime.now().total_seconds() * 1000.0
+
+# 2018-12-27 15:00:34.770709
++datetime.datetime.now().total_seconds() * 1000.0
+
+# 2018-12-27 15:00:39.965702
++datetime.datetime.now.total_seconds() * 1000.0
+
+# 2018-12-27 15:00:54.277025
++datetime.Now()
+
+# 2018-12-27 15:01:14.828036
++datetime.datetime.now
+
+# 2018-12-27 15:01:28.045997
++datetime.datetime.now().timestamp()
+
+# 2018-12-27 15:02:20.908542
++datetime.datetime('2018-12-25 10:45:28')
+
+# 2018-12-27 15:04:36.721788
++time.mktime(datetime.datetime.strptime('2018-12-25 10:45:28', '%Y-%m-%d %H:%M:%S').timetuple())
+
+# 2018-12-27 15:04:43.506346
++import time
+
+# 2018-12-27 15:04:45.322474
++time.mktime(datetime.datetime.strptime('2018-12-25 10:45:28', '%Y-%m-%d %H:%M:%S').timetuple())
+
+# 2018-12-27 15:31:42.409553
++time.mktime(datetime.datetime.now)
+
+# 2018-12-27 15:31:49.255581
++datetime.datetime.now
+
+# 2018-12-27 15:31:51.666065
++datetime.datetime.now()
+
+# 2018-12-27 15:31:57.976477
++datetime.datetime.now().timetuple()
+
+# 2018-12-27 15:32:20.964875
++time.mktime(datetime.datetime.now().timetuple())
+
+# 2018-12-27 15:34:52.739317
++time.mktime(datetime.datetime.now())
+
+# 2018-12-27 15:35:01.593449
++datetime.datetime.now().timetuple()
+
+# 2018-12-27 15:39:05.475197
++time.mktime(datetime.datetime.now())
+
+# 2018-12-27 15:39:13.204408
++time.mktime(datetime.datetime.now().timetuple())
+
+# 2018-12-27 15:39:22.069335
++str(time.mktime(datetime.datetime.now().timetuple())).split('.')
+
+# 2018-12-27 15:39:25.703239
++str(time.mktime(datetime.datetime.now().timetuple())).split('.')[0]
+
+# 2018-12-27 17:23:04.875398
++import time
+
+# 2018-12-27 17:23:09.890221
++import datetime
+
+# 2018-12-27 17:23:12.565874
++str(time.mktime(datetime.datetime.now().timetuple())).split('.')[0]
+
+# 2018-12-28 14:13:18.119955
++def func(x):
++    return x+1
+
+# 2018-12-28 14:13:38.916142
++def test_func():
++    assert func(3) == 5
+
+# 2018-12-28 14:13:42.554672
++py.test
+
+# 2019-01-09 10:41:02.536886
++y
+
+# 2019-01-10 10:54:01.737379
++?
+
+# 2019-01-10 14:48:24.179468
++import pyspark
++from pyspark import SparkContext as sc
++from pyspark import SparkConf
++
++conf = SparkConf().setAppName("miniProject").setMaster("local[*]")
++
++sc = SparkContext.getOrCreate(conf)
++
++rdd = sc.parallelize([1,2,3,4,5])
++rdd
++
++rdd.getNumPartitions()
++rdd.glom().collect()
+
+# 2019-01-10 15:23:42.962853
++import pyspark
++from pyspark import SparkContext as sc
++from pyspark import SparkConf
++conf=SparkConf().setAppName("miniProject").setMaster("local[*]")
++sc=SparkContext.getOrCreate(conf)
++
++#（a）利用list创建一个RDD;使用sc.parallelize可以把Python list，NumPy array或者Pandas Series,Pandas DataFrame转成Spark RDD。
++rdd = sc.parallelize([1,2,3,4,5])
++rdd
++#Output:ParallelCollectionRDD[0] at parallelize at PythonRDD.scala:480
++
++#（b）getNumPartitions()方法查看list被分成了几部分
++rdd.getNumPartitions()
++#Output:4
+
+# 2019-01-10 15:23:55.769978
++rdd
+
+# 2019-01-10 15:24:03.819229
++rdd.getNumPartitions()
+
+# 2019-01-10 15:44:49.681457
++sss
+
+# 2019-01-10 15:54:14.847489
++import pyspark
+
+# 2019-01-10 15:54:35.381842
++from pyspark import SparkConf, SparkContext
+
+# 2019-01-10 15:55:22.007211
++sc = sparkConf().setAppName('test').setMaster('local[*]')
+
+# 2019-01-10 15:55:28.986034
++sc = SparkConf().setAppName('test').setMaster('local[*]')
+
+# 2019-01-10 15:56:14.946676
++sc = SparkContext.getOrCreSparkConf().setAppName('test').setMaster('local[*]')
+
+# 2019-01-10 15:56:27.312028
++sc = SparkContext.getOrCreate(SparkConf().setAppName('test').setMaster('local[*]'))
+
+# 2019-01-10 15:56:45.591604
++rdd = sc.parallelize([1,2,3,4,5,6])
+
+# 2019-01-10 15:56:51.940833
++rdd.getNumPartitions
+
+# 2019-01-10 15:56:56.265059
++rdd.getNumPartitions()
+
+# 2019-01-10 15:58:44.888289
++rdd.map(lambda x: x+1)
+
+# 2019-01-10 15:58:49.773873
++rdd.map(lambda x: x+1).collect()
+
+# 2019-01-10 15:59:01.320097
++rdd.map(lambda x: x+x).collect()
+
+# 2019-01-10 15:59:34.973396
++rdd.sum()
+
+# 2019-01-10 17:00:11.670702
++name = 'Zophie'
+
+# 2019-01-10 17:00:13.548640
++name
+
+# 2019-01-10 17:00:19.619991
++number = 1
+
+# 2019-01-10 17:00:23.843947
++number
+
+# 2019-01-11 10:21:48.278379
++
++
++import pyspark
++from pyspark import SparkConf, SparkContext
++sc = sparkConf().setAppName('test').setMaster('local[*]')
++sc = SparkConf().setAppName('test').setMaster('local[*]')
++sc = SparkContext.getOrCreSparkConf().setAppName('test').setMaster('local[*]')
++sc = SparkContext.getOrCreate(SparkConf().setAppName('test').setMaster('local[*]'))
++rdd = sc.parallelize([1,2,3,4,5,6])
++rdd.getNumPartitions()
++rdd.map(lambda x: x+1)
++rdd.map(lambda x: x+1).collect()
++rdd.map(lambda x: x+x).collect()
++rdd.sum()
++name = 'Zophie'
++rdd = sc.parallelize([1,2,3,4,5])
