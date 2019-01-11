@@ -1,5 +1,7 @@
 
-alias shortcuts="vim ~/.shortcuts"
+alias zshrc='vim ~/.zshrc'
+alias applyzshrc='source ~/.zshrc'
+alias shortcuts='vim ~/.shortcuts'
 alias applyshortcuts="source ~/.shortcuts" 
 alias showShortcuts="cat ~/.shortcuts"
 
@@ -13,9 +15,11 @@ alias tmux="tmux -2"
 
 alias bashrc="vim ~/.bashrc"
 alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
 
 # Editor action
 alias e="vim "
+alias ue="vim -u NONE"
 
 alias applyZshrc="source ~/.zshrc"
 alias applyBashrc="source ~/.bashrc"
@@ -25,9 +29,85 @@ alias applyProfile="source ~/.profile"
 alias uru="uru.bat"
 
 # Docker
-#alias applyDocker="eval $(docker-machine env default)"
-alias startDocker="docker-machine start "
-alias stopDocker="docker-machine stop "
+alias applyDocker='applyDockerMachine() { \
+  docker-machine env --shell zsh $1; \
+    eval $(docker-machine env --shell zsh $1); \
+    export DOCKER_CERT_PATH=/d/James/.docker/machine/machines/$1; \
+};applyDockerMachine'
+
+alias applyDockerSwarm='applySwarm() { \
+  docker-machine env --shell zsh --swarm $1; \
+    eval $(docker-machine env --shell zsh --swarm $1); \
+    export DOCKER_CERT_PATH=/d/James/.docker/machine/machines/$1; \
+};applySwarm'
+
+alias applyDockerCert='applyDockerMachineCert() { export DOCKER_CERT_PATH=/d/James/.docker/machine/machines/1$; };applyDockerMachineCert'
 alias enterContainer="docker exec -it "
+alias cfgDocker="configDocker() { DOCKER_COMMAND=`echo -n "$@" | sed -E 's/\/mnt\/([a-z])\//\/\/\1\//g'`; eval /usr/bin/docker $DOCKER_COMMAND; };configDocker"
+
+alias dkpud='docker-compose up -d'
+alias dkpr='docker-compose stop && docker-compose rm -f'
+alias dklogf='docker-compose logs -f'
+
+# alias drminone="do() { docker rmi `docker images | grep '^<none>' | awk '{print $3}'`; };"
+alias dockerrmnone="dockerrmi() { docker rmi `docker images --filter "dangling=true" -q --no-trunc`; };dockerrmi"
 
 alias vagrantssh="VAGRANT_PREFER_SYSTEM_BIN=1 vagrant ssh"
+
+alias jupyspark="HADOOP_HOME=/mnt/c/opt/hadoop-2.8.0 \
+  SPARK_HOME=/mnt/c/opt/spark \
+  PATH='$HADOOP_HOME/bin:$SPARK_HOME/bin:$PATH' \
+  PYSPARK_DRIVER_PYTHON=jupyter \
+  PYSPARK_DRIVER_PYTHON_OPTS='notebook' \
+  pyspark"
+
+alias ptpyspark='PYSPARK_PYTHON=python3 PYSPARK_DRIVER_PYTHON=ptpython pyspark'
+
+alias k8sl=kubectl
+
+#alias k8s='kubectl'
+#alias k8sns='kubectl -n kube-system'
+# For current user's home directory
+alias k8s='kubectl --kubeconfig ~/.kube/config'
+alias k8sns='kubectl --kubeconfig ~/.kube/config'
+
+# For current working directory
+alias k8sc='kubectl --kubeconfig .kube/config'
+alias k8scns='kubectl -n kube-system --kubeconfig .kube/config'
+
+# For specific any kube config file
+alias k8scf='kubectl --kubeconfig'
+alias k8scfns='kubectl -n kube-system --kubeconfig'
+
+alias kkubeproxy='kill -9 $(pgrep -U james kubectl)'
+
+alias killbyn='killbyname() { echo kill $1 by following command: kill -9 \`pgrep -U $(whoami) $1\`; kill -9 `pgrep -U $(whoami) $1`; };killbyname'
+
+#alias setUpK8SConf="setUp() { 
+#  envList=$(echo `ls -d /d/James/.kube/env/**`|sed 's/ /:/g');
+#  export KUBECONFIG=$envList;
+#  echo $KUBECONFIG
+#};setUp"
+
+#alias setUpK8SCli="setUp() { 
+#  source /d/James/.kube/tools/kube-ps1.sh;
+#  #PROMPT='$(kube_ps1)'$PROMPT;
+#  KUBE_PS1_SYMBOL_USE_IMG=true;
+#};setUp"
+
+# Helm alias
+alias helmc='KUBECONFIG=/home/james/minikube-workspace/.kube/config HELM_HOME=/home/james/minikube-workspace/.helm helm'
+
+# Fission
+alias fission='KUBECONFIG=~/.kube/env/k8s-station fission'
+
+# Python
+alias updatepypkg='pip freeze > requirements.txt'
+alias flaskcli="python /mnt/d/Tools/flask-scaffold/flask_skeleton.py"
+alias python-vim='docker run -it --rm -v /projects/cnctooling:/src --workdir /src fedeg/python-vim:3'
+alias python-nvim='docker run -it --rm -v /projects:/projects --workdir /src fedeg/python-nvim:latest'
+alias python=python3
+alias pip=pip3
+
+# Powercmd
+alias rmrf='rm -rf'

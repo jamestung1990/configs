@@ -1,12 +1,21 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="babun"
+# Path to your oh-my-zsh installation.
+export ZSH=/mnt/d/James/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
 ZSH_THEME="honukai"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -46,18 +55,27 @@ ZSH_THEME="honukai"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+ZSH_DISABLE_COMPFIX="true"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-syntax-highlighting web-search history history-substring-search)
+plugins=(
+  git
+  docker
+  autojump
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
+  kubectl
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -68,12 +86,13 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -84,36 +103,121 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. ~/configs/.shortcuts
+if [ -f ~/.dir_colors ]; then
+  eval `dircolors ~/.dir_colors`
+fi
 
-[[ -s /cygdrive/d/James/.autojump/etc/profile.d/autojump.sh ]] && source /cygdrive/d/James/.autojump/etc/profile.d/autojump.sh
+[[ -s /mnt/d/James/.autojump/etc/profile.d/autojump.sh ]] && \
+  source /mnt/d/James/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
+unsetopt BG_NICE
 
-export M2_HOME=/cygdrive/d/tools/apache-maven-3.3.9
-export JAVA_HOME=/cygdrive/c/Program\ Files/Java/jdk1.8.0_121
+export PATH="/mnt/d/James/.local/bin:$PATH:/mnt/c/ProgramData/Chocolatey/bin:" \
+  "/mnt/c/Program Files/Oracle/VirtualBox"
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/d/James"
 
-export PATH="$JAVA_HOME/bin:$M2_HOME/bin:$PATH"
+#source <(kubectl completion zsh)
+#source ~/.minikube-docker-env
 
-# If you don't want to update Ansible every time set BOOTSTRAP_ANSIBLE_UPDATE=0
-export BOOTSTRAP_ANSIBLE_UPDATE=0
-source /cygdrive/d/James/ansible-babun-bootstrap/ansible-babun-bootstrap.sh
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+export SPARK_HOME=/mnt/c/opt/spark
+export HADOOP_HOME=/mnt/c/opt/hadoop-2.8.0
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export CASSANDRA_HOME=/mnt/c/opt/cassandra
+export HIVE_HOME=/mnt/c/opt/hive
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
 
-if [ ! -e ~/.ssh ]
-then
-  ln -s /cygdrive/c/Users/James/.ssh .
-fi
+export PATH="$PATH:$HIVE_HOME/bin:$CASSANDRA_HOME/bin:$SPARK_HOME/bin:" \
+  "$SPARK_HOME/sbin:$HADOOP_HOME/bin"
 
-sshAgentPid=${"$(ps -ef|grep ssh-agent|awk '{print $2}'|head -1)":-"0"}
-if [ "$sshAgentPid" = "0" ]
-then
-  echo "Setup ssh agent..."
-  eval $(ssh-agent)
-  ssh-add ~/.ssh/id_rsa
-  echo "ssh agent setup done"
-fi
+source ~/.shortcuts
 
-source '/cygdrive/d/James/.babun-docker/setup.sh'
+#export DOCKER_HOST=tcp://192.168.99.100:2376
+#export DISPLAY=:0
+#export DISPLAY=127.0.0.1:0
 
-export ANT_HOME="/cygdrive/d/tools/apache-ant-1.10.1"
-export PATH="$ANT_HOME/bin:$PATH"
+#sudo umount /mnt/d
+#sudo mount -t drvfs D: /mnt/d -o metadata
+#cd
+#pwd
+#sudo umount /mnt/c
+#sudo mount -t drvfs C: /mnt/C -o metadata
+sudo mount --bind /mnt/c /c
+sudo mount --bind /mnt/d /d
+
+export GTK_IM_MODULE=hime
+export QT_IM_MODULE=hime
+
+# added by Anaconda3 installer
+#export PATH="/mnt/d/James/anaconda3/bin:$JAVA_HOME/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# For default of docker machine
+# you can change default machine by invoke alias 'applyDocker [docker machine name]'
+export DOCKER_CERT_PATH="/mnt/d/James/.docker/machine/machines/default"
+
+#source <(~/.bin/docker-env)
+#alias docker-machine="docker-machine.exe"
+#alias docker="docker.exe" 
+# Native docker client is used instead, less issues with environment variables
+#docker-machine.exe start default && # autostart docker-machine
+# docker-compose path compatibility
+#export COMPOSE_CONVERT_WINDOWS_PATHS=1
+#alias docker=docker.exe
+#alias docker-compose=docker-compose.exe
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/mnt/d/James/.sdkman"
+[[ -s "/mnt/d/James/.sdkman/bin/sdkman-init.sh" ]] && \
+  source "/mnt/d/James/.sdkman/bin/sdkman-init.sh"
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+ # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+
+export kubectx=/d/James/.kube/tools/kubectx
+
+export PATH="$kubectx:/d/Jammes/.local/bin:/d/James/.yarn/bin:$PATH"
+
+source ~/.helmrc
+source ~/.optrc
+
+# k8s
+setUpK8SConf(){
+  envList=$(echo `ls -d /d/James/.kube/env/**`|sed 's/ /:/g')
+  export KUBECONFIG="$envList"
+}
+#setUpK8SConf
+
+setUpK8SPrompt(){
+  KUBE_PS1_SYMBOL_USE_IMG=true
+  KUBE_PS1_NS_ENABLE=false
+  source ~/.kube/tools/kube-ps1.sh
+  PROMPT=$PROMPT'$(kube_ps1) '
+}
+#setUpK8SPrompt
+alias applyK8S='setUpK8SConf && setUpK8SPrompt'
+
+export PYTHONSTARTUP=~/.config/pythonrc.py
+
+# Codi
+# # Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-python}"
+  shift
+  vim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+  }
 
