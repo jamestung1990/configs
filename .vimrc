@@ -17,6 +17,9 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" If installed using git
+Plug '~/.fzf'
+
 " Plug 'AlexJF/rename.vim', {'on': 'Rename' }
 
 " Colorschemes
@@ -132,6 +135,10 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Dispatch command to Vim's quickfix window or Tmux's panel
 Plug 'tpope/vim-dispatch'
+" A vim script to send portion of text from a vim buffer to a
+" running tmux session.
+Plug 'jgdavey/tslime.vim'
+Plug 'benmills/vimux'
 let g:rspec_command = "Dispatch rspec {spec}"
 Plug 'tpope/vim-surround'
 
@@ -161,14 +168,14 @@ map <Leader>rsa :call RunAllSpecs()<CR>
 
 " Testing plug for many languages
 Plug 'janko-m/vim-test'
-let test#strategy = "dispatch"
+let test#strategy = "tslime" " vimux, tslime, dispatch
 nmap <silent> <leader>mt :TestNearest<CR>
 nmap <silent> <leader>mT :TestFile<CR>
 nmap <silent> <leader>ma :TestSuite<CR>
 nmap <silent> <leader>ml :TestLast<CR>
 nmap <silent> <leader>mg :TestVisit<CR>
 
-let test#python#runner = 'unittest'
+let test#python#runner = 'pytest'
 " Runners available are 'pytest', 'nose', 'nose2', 'djangotest', \
 " 'djangonose' and Python's built-in 'unittest'
 
@@ -268,8 +275,22 @@ map <Leader>ptc :call VimuxRunCommand("clear; pytest " . bufname("%"))<CR>"
 map <Leader>pt :call VimuxRunCommand("clear; pytest")<CR>"
 
 Plug 'metakirby5/codi.vim'
-Plug 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
+" Plug 'jpalardy/vim-slime'
+" let g:slime_target = "tmux"
+
+Plug 'kshenoy/vim-signature'
+Plug 'junegunn/vim-peekaboo'
+Plug 'Yilin-Yang/vim-markbar'
+nmap <Leader>m <Plug>ToggleMarkbar
+" the following are unneeded if ToggleMarkbar is mapped
+nmap <Leader>mo <Plug>OpenMarkbar
+nmap <Leader>mc <Plug>CloseMarkbar
+" g, t to 'go to' a mark
+let g:markbar_jump_to_mark_mapping = 'gt'
+" Ctrl-r, d to rename a mark
+let g:markbar_rename_mark_mapping = '<C-r>d'
+" Backspace to clear a mark's name
+let g:markbar_reset_mark_mapping = '<BS>'
 
 filetype plugin indent on    " required
 
@@ -344,10 +365,12 @@ let g:ctrlp_custom_ignore = {
 map <silent><Leader>inst :PlugInstall<CR>
 map <silent><Leader>lcd :lcd %:p:h<CR>
 map <silent><Leader>erc :e $MYVIMRC<CR>
+map <silent><Leader>src :sp $MYVIMRC<CR>
+map <silent><Leader>vrc :vsp $MYVIMRC<CR>
 map <silent><Leader>cb :CtrlSpace<CR>
 map <silent><Leader>gc :!google-chrome %<CR>
 nmap <silent><Leader><CR> O<Esc>j
-nmap <silent><CR> o<Esc>k
+nmap <silent><Leader>\<CR> o<Esc>k
 nmap <silent><Leader>sv :so $MYVIMRC<CR>
       
 " Change window in quick way
@@ -369,6 +392,10 @@ map <leader>bd :bd<CR>
 " to open in windows or tabs, respectively.
 map <leader>sb :sball<CR>
 map <leader>tsb :tab sball<CR>
+map bn  :bnext<CR>
+map bp  :bprev<CR>
+
+map h] <C-]>
 
 " map <Leader>P :w!<CR>:w!/d/James/tmp/vim-markdown.md<CR>:!pandoc -s -f 
 " markdown -t html -o /d/James/tmp/vim-markdown.html 

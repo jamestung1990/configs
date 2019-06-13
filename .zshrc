@@ -69,6 +69,7 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
   kubectl
+  # vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,6 +104,12 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source ~/.shortcuts
+source ~/configs/.utils.sh
+
+source ~/.helmrc
+source ~/.optrc
+
 if [ -f ~/.dir_colors ]; then
   eval `dircolors ~/.dir_colors`
 fi
@@ -112,8 +119,8 @@ fi
 autoload -U compinit && compinit -u
 unsetopt BG_NICE
 
-export PATH="/mnt/d/James/.local/bin:$PATH:/mnt/c/ProgramData/Chocolatey/bin:" \
-  "/mnt/c/Program Files/Oracle/VirtualBox"
+export PATH="/mnt/d/James/.local/bin:$PATH:/mnt/c/ProgramData/Chocolatey/bin:
+/mnt/c/Program Files/Oracle/VirtualBox"
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/d/James"
 
@@ -128,10 +135,12 @@ export CASSANDRA_HOME=/mnt/c/opt/cassandra
 export HIVE_HOME=/mnt/c/opt/hive
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
 
-export PATH="$PATH:$HIVE_HOME/bin:$CASSANDRA_HOME/bin:$SPARK_HOME/bin:" \
-  "$SPARK_HOME/sbin:$HADOOP_HOME/bin"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$PATH:$HIVE_HOME/bin:$CASSANDRA_HOME/bin:$SPARK_HOME/bin:
+$SPARK_HOME/sbin:$HADOOP_HOME/bin"
 
-source ~/.shortcuts
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 
 #export DOCKER_HOST=tcp://192.168.99.100:2376
 #export DISPLAY=:0
@@ -151,73 +160,27 @@ export QT_IM_MODULE=hime
 
 # added by Anaconda3 installer
 #export PATH="/mnt/d/James/anaconda3/bin:$JAVA_HOME/bin:$PATH"
-export PATH="$JAVA_HOME/bin:$PATH"
-
-# For default of docker machine
-# you can change default machine by invoke alias 'applyDocker [docker machine name]'
-export DOCKER_CERT_PATH="/mnt/d/James/.docker/machine/machines/default"
-
-#source <(~/.bin/docker-env)
-#alias docker-machine="docker-machine.exe"
-#alias docker="docker.exe" 
-# Native docker client is used instead, less issues with environment variables
-#docker-machine.exe start default && # autostart docker-machine
-# docker-compose path compatibility
-#export COMPOSE_CONVERT_WINDOWS_PATHS=1
-#alias docker=docker.exe
-#alias docker-compose=docker-compose.exe
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/mnt/d/James/.sdkman"
-[[ -s "/mnt/d/James/.sdkman/bin/sdkman-init.sh" ]] && \
-  source "/mnt/d/James/.sdkman/bin/sdkman-init.sh"
+# # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
- # This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/mnt/d/James/.sdkman"
+# [[ -s "/mnt/d/James/.sdkman/bin/sdkman-init.sh" ]] && \
+#   source "/mnt/d/James/.sdkman/bin/sdkman-init.sh"
 
-export kubectx=/d/James/.kube/tools/kubectx
 
-export PATH="$kubectx:/d/Jammes/.local/bin:/d/James/.yarn/bin:$PATH"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 
-source ~/.helmrc
-source ~/.optrc
 
-# k8s
-setUpK8SConf(){
-  envList=$(echo `ls -d /d/James/.kube/env/**`|sed 's/ /:/g')
-  export KUBECONFIG="$envList"
-}
-#setUpK8SConf
 
-setUpK8SPrompt(){
-  KUBE_PS1_SYMBOL_USE_IMG=true
-  KUBE_PS1_NS_ENABLE=false
-  source ~/.kube/tools/kube-ps1.sh
-  PROMPT=$PROMPT'$(kube_ps1) '
-}
-#setUpK8SPrompt
-alias applyK8S='setUpK8SConf && setUpK8SPrompt'
+# export http_proxy=http://192.168.1.18:808
+# export https_proxy=http://192.168.1.18:808
+# export socks_proxy=http://192.168.1.18:1808
 
-export PYTHONSTARTUP=~/.config/pythonrc.py
-
-# Codi
-# # Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-  }
 
