@@ -1,8 +1,20 @@
 #!/bin/bash
 
 alias openutils='e ~/configs/.utils.sh'
+alias applyutils='. ~/configs/.utils.sh'
 
 # curDir=$(pwd)
+
+removePythonEnv() {
+  local envName="${1:-}"
+  if [ "$envName" = "" ]; then return 0; fi
+  if [ -d "$HOME/.pyenv/$envName" ]; then
+    rm -rf "$HOME/.pyenv/$envName"
+  fi
+  if [ ! -d "$HOME/.pyenv/$envName" ]; then
+    echo "Python env. $HOME/.pyenv/$envName has been removed!"
+  fi
+}
 
 applyPythonEnv() {
   local envName="${1:-pydevenv}"
@@ -19,6 +31,9 @@ applyPythonEnv() {
 # k8s
 setUpK8SConf(){
   envList=$(echo `ls -d /d/James/.kube/env/**`|sed 's/ /:/g')
+  if [ -d "$(pwd)/.kube" ]; then
+    envList="$(pwd)/.kube/config:$envList"
+  fi
   export KUBECONFIG="$envList"
 }
 #setUpK8SConf
@@ -37,11 +52,13 @@ detachK8SPrompt(){
   export PATH="${PATH#$kubectx}" # remove kubectx from PATH variable
   PROMPT="${PROMPT#$(kube_ps1)} "
   unset kubectx
+  unset KUBECONFIG
+  . ~/.zshrc
 }
 #setUpK8SPrompt
-alias applyK8S='setUpK8SConf && setUpK8SPrompt'
-alias applyK8SProxy='kubectl proxy --accept-hosts ".*" &'
-alias detachK8S='detachK8SPrompt'
+alias applyk8s='setUpK8SConf && setUpK8SPrompt'
+alias applyk8sProxy='kubectl proxy --accept-hosts ".*" &'
+alias detachk8s='detachK8SPrompt'
 
 # export PYTHONSTARTUP=~/.config/pythonrc.py
 
