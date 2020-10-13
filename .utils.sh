@@ -94,7 +94,9 @@ fzfPreviewSetting='[[ $(file --mime {}) =~ binary ]] &&
 # alias for enable fzf preview
 alias openb='vim $(fzf --preview $fzfPreviewSetting)'
 export FZF_CTRL_T_OPTS="--preview '$fzfPreviewSetting'"
+alias openfv='fzf --preview $fzfPreviewSetting --bind up:preview-up,down:preview-down'
 alias open='fzf'
+alias openvim='fzf --preview $fzfPreviewSetting --bind up:preview-up,down:preview-down | vim'
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude "pyenv" . "$1"
@@ -103,7 +105,7 @@ _fzf_compgen_path() {
 
 # # For default of docker machine
 # # you can change default machine by invoke alias 'applyDocker [docker machine name]'
-export DOCKER_CERT_PATH="/mnt/d/James/.docker/machine/machines/default"
+#export DOCKER_CERT_PATH="/mnt/d/James/.docker/machine/machines/default"
 
 #source <(~/.bin/docker-env)
 #alias docker-machine="docker-machine.exe"
@@ -182,4 +184,22 @@ alias k8scfns='kubectl -n kube-system --kubeconfig'
 alias kkubeproxy='kill -9 $(pgrep -U james kubectl)'
 
 alias killbyn='killbyname() { echo kill $1 by following command: kill -9 \`pgrep -U $(whoami) $1\`; kill -9 `pgrep -U $(whoami) $1`; };killbyname'
+
+# explain.sh begins
+explain () {
+  if [ "$#" -eq 0 ]; then
+    while read  -p "Command: " cmd; do
+      echo curl -Gs "https://www.mankier.com/api/v2/explain/?cols="$(tput cols) --data-urlencode "q=$cmd"
+      curl -Gs "https://www.mankier.com/api/v2/explain/?cols="$(tput cols) --data-urlencode "q=$cmd"
+    done
+    echo "Bye!"
+  elif [ "$#" -eq 1 ]; then
+    echo curl -Gs "https://www.mankier.com/api/v2/explain/?cols="$(tput cols) --data-urlencode "q=$1"
+    curl -Gs "https://www.mankier.com/api/v2/explain/?cols="$(tput cols) --data-urlencode "q=$1"
+  else
+    echo "Usage"
+    echo "explain                  interactive mode."
+    echo "explain 'cmd -o | ...'   one quoted command to explain it."
+  fi
+}
 

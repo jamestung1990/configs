@@ -20,8 +20,8 @@ alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 
 # Editor action
-alias e="/usr/local/bin/vim "
-alias ue="vim -u NONE"
+alias e="editor "
+alias ue="e -u NONE"
 
 alias applyZshrc="source ~/.zshrc"
 alias applyBashrc="source ~/.bashrc"
@@ -65,4 +65,4 @@ alias apbook='ansible-playbook '
 
 alias fiiktl='kubectl --kubeconfig ~/.kube/env/fii-k8s-config'
 
-alias vim='/usr/local/bin/vim'
+#alias vim='/usr/local/bin/vim'
